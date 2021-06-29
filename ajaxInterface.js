@@ -7,9 +7,9 @@ class AjaxInterface {
 
 		switch(method) {
 			case 'GET':
-				return await AjaxInterface.#requestGet(url, data);
+				return AjaxInterface.#requestGet(url, data);
 			case 'POST':
-				return await AjaxInterface.#requestPost(url, data);
+				return AjaxInterface.#requestPost(url, data);
 		}
 	}
 

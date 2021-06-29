@@ -5,22 +5,12 @@ class AjaxInterface {
 		if(!['GET', 'POST'].includes(method)) return console.error('Only GET an d POST methods are available.');
 		if(!AjaxInterface.#validateUrl(url)) return console.error('Invalid URL for request.');
 
-		let response = undefined;
 		switch(method) {
 			case 'GET':
-				response = await AjaxInterface.#requestGet(url, data);
-
-				break;
+				return await AjaxInterface.#requestGet(url, data);
 			case 'POST':
-				response = await AjaxInterface.#requestPost(url, data);
-
-				break;
+				return await AjaxInterface.#requestPost(url, data);
 		}
-
-		console.log('sendRequest method');
-		console.log(response);
-
-		return response;
 	}
 
 	// Do GET request

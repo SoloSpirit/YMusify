@@ -11,13 +11,12 @@ class SpotifyAPI extends AjaxInterface{
 		const data = {
 			client_id: this.clientId,
 			response_type: 'code',
-			redirect_uri: this.redirectUrl,
-			show_dialog: true
+			redirect_uri: this.redirectUrl
 		};
 
-		this.sendRequest('GET', 'https://accounts.spotify.com/authorize', data)
-			.then(response => {
-				console.log(response);
-			});
+		const url = new URL('https://accounts.spotify.com/authorize');
+		url.search = new URLSearchParams(data).toString();
+
+		location.href = url.href;
 	}
 }

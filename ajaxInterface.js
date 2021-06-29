@@ -20,7 +20,7 @@ class AjaxInterface {
 
 		const options = {
 			method: 'GET',
-			mode: 'cors',
+			mode: 'no-cors',
 			cache: 'no-cache',
 			headers: { 'Content-Type': 'application/json' },
 		}
@@ -32,7 +32,7 @@ class AjaxInterface {
 	static async #requestPost(url, data) {
 		const options = {
 			method: 'POST',
-			mode: 'cors',
+			mode: 'no-cors',
 			cache: 'no-cache',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(data)

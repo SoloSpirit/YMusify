@@ -8,13 +8,11 @@ class AjaxInterface {
 		let response = undefined;
 		switch(method) {
 			case 'GET':
-				AjaxInterface.#requestGet(url, data)
-					.then(result => response = result);
+				response = AjaxInterface.#requestGet(url, data);
 
 				break;
 			case 'POST':
-				AjaxInterface.#requestPost(url, data)
-					.then(result => response = result);
+				response = AjaxInterface.#requestPost(url, data);
 
 				break;
 		}

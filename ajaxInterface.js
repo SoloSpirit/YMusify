@@ -25,7 +25,7 @@ class AjaxInterface {
 			headers: { 'Content-Type': 'application/json' },
 		}
 
-		return await fetch(url.href, options);
+		return await fetch(url, options);
 	}
 
 	// Do POST request

@@ -27,6 +27,7 @@ class SpotifyAPI extends AjaxInterface{
 					loginWindow.close();
 				}
 			} catch (e) {
+				console.log(e);
 				console.log('Spotify user is logging in...');
 			}
 		}, 1000);

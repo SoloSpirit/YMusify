@@ -8,7 +8,7 @@ class SpotifyAPI extends AjaxInterface{
 		this.redirectUrl = 'https://solospirit.github.io/YMusify/';
 	}
 
-	openLoginWindow() {
+	async openLoginWindow() {
 		const data = {
 			client_id: this.clientId,
 			response_type: 'code',
@@ -18,8 +18,11 @@ class SpotifyAPI extends AjaxInterface{
 		const url = new URL('https://accounts.spotify.com/authorize');
 		url.search = new URLSearchParams(data).toString();
 
+		let res = await this.sendRequest('GET', url, data);
+		console.log(res);
+
 		// location.href = url.href;
-		const loginWindow = window.open(url.href, '_blank', 'location=yes,width=800,status=yes');
+		// const loginWindow = window.open(url.href, '_blank', 'location=yes,width=800,status=yes');
 	}
 
 	getToken() {

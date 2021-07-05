@@ -4,7 +4,7 @@ class AjaxInterface {
 		// Handle main errors
 		if (!['GET', 'POST'].includes(method)) return console.error('Only GET and POST methods are available.');
 		if (!AjaxInterface.#validateUrl(url)) return console.error('Invalid URL for request.');
-		if (typeof headers !== 'object') return console.error('Headers must be of type "Object"');
+		if (headers && typeof headers !== 'object') return console.error('Headers must be of type "Object"');
 
 		const options = {
 			method: method,

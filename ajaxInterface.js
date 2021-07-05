@@ -25,7 +25,6 @@ class AjaxInterface {
 		}
 
 		const response = await fetch(url, options);
-		console.log(response);
 
 		return await response.json();
 	}

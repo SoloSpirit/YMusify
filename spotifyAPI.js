@@ -17,12 +17,10 @@ class SpotifyAPI extends AjaxInterface{
 
 		const url = new URL('https://accounts.spotify.com/authorize');
 		url.search = new URLSearchParams(data).toString();
-
-		let res = await this.sendRequest('GET', url, data);
-		console.log(res);
-
-		// location.href = url.href;
-		// const loginWindow = window.open(url.href, '_blank', 'location=yes,width=800,status=yes');
+		const loginWindow = window.open(url.href, '_blank', 'location=yes,width=800,status=yes');
+		setInterval(() => {
+			console.log(loginWindow)
+		}, 1000);
 	}
 
 	getToken() {

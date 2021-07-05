@@ -19,7 +19,7 @@ class SpotifyAPI extends AjaxInterface{
 		url.search = new URLSearchParams(data).toString();
 
 		// location.href = url.href;
-		const loginWindow = window.open(url.href, '_blank', 'location=yes');
+		const loginWindow = window.open(url.href, '_blank', 'location=yes,width=800,status=yes');
 	}
 
 	getToken() {

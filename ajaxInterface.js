@@ -1,51 +1,39 @@
 class AjaxInterface {
 	// Do request, available methods: GET, POST
-	async sendRequest(method, url, data) {
+	async sendRequest(method, url, data, headers) {
 		// Handle main errors
-		if(!['GET', 'POST'].includes(method)) return console.error('Only GET an d POST methods are available.');
-		if(!AjaxInterface.#validateUrl(url)) return console.error('Invalid URL for request.');
-
-		switch(method) {
-			case 'GET':
-				return await AjaxInterface.#requestGet(url, data);
-			case 'POST':
-				return await AjaxInterface.#requestPost(url, data);
-		}
-	}
-
-	// Do GET request
-	static async #requestGet(url, data) {
-		url = new URL(url);
-		url.search = new URLSearchParams(data).toString();
+		if (!['GET', 'POST'].includes(method)) return console.error('Only GET and POST methods are available.');
+		if (!AjaxInterface.#validateUrl(url)) return console.error('Invalid URL for request.');
+		if (typeof headers !== 'object') return console.error('Headers must be of type "Object"');
 
 		const options = {
-			method: 'GET',
+			method: method,
 			mode: 'no-cors',
 			cache: 'no-cache',
-			headers: { 'Content-Type': 'application/json' },
+			headers: {
+				'Content-Type': 'application/json',
+				...headers
+			}
 		}
 
-		return await fetch(url, options);
-	}
-
-	// Do POST request
-	static async #requestPost(url, data) {
-		const options = {
-			method: 'POST',
-			mode: 'no-cors',
-			cache: 'no-cache',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(data)
+		if (method === 'GET') {
+			url = new URL(url);
+			url.search = new URLSearchParams(data).toString();
+			url = url.href;
+		} else {
+			options.body = JSON.stringify(data);
 		}
 
-		return await fetch(url, options).json();
+		const response = await fetch(url, options);
+
+		return await response.json();
 	}
 
 	// URL validation
 	static #validateUrl(url) {
 		try {
 			new URL(url);
-		} catch(e) {
+		} catch (e) {
 			return false;
 		}
 

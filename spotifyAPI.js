@@ -4,7 +4,6 @@ class SpotifyAPI extends AjaxInterface{
 
 		this.baseUrl = 'https://api.spotify.com/v1/';
 		this.clientId = '8469a359cbb048ee8cb53dbbb255f17f';
-		this.clientSecret = '32c5454fd8e34e8ab6c43a1740ed3864';
 		this.redirectUrl = 'https://solospirit.github.io/YMusify/';
 	}
 

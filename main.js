@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		// 	console.log(spotifyAuthCode);
 		// }
 
-		spotifyAPI.getUser('04jcyi71zk6szw13n26wcipa1');
+		spotifyAPI.openLoginWindow();
 	});
 });

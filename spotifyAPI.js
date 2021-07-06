@@ -17,33 +17,12 @@ class SpotifyAPI extends AjaxInterface{
 		const url = new URL('https://accounts.spotify.com/authorize');
 		url.search = new URLSearchParams(data).toString();
 		const loginWindow = window.open(url.href, '_blank', 'location=yes,width=800,status=yes');
-		setInterval(() => {
-			try {
-				let authCode = new URL(location.href).searchParams.get('code');
-
-				if (authCode) {
-					this.newAuthCode(authCode);
-					loginWindow.close();
-				}
-			} catch (e) {
-				console.log(e);
-				console.log('Spotify user is logging in...');
-			}
-		}, 1000);
 	}
 
-	get newAuthCode() {
-		return this.authCode;
-	}
+	async getUser(userId) {
+		let res = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`);
+		res = await res.json();
 
-	set newAuthCode(authCode) {
-		window.localStorage.setItem('spotifyAuthCode', authCode);
-		this.authCode = authCode;
-	}
-
-	getToken() {
-		const data = {
-
-		}
+		console.log(res);
 	}
 }

@@ -11,5 +11,7 @@
 </head>
 <body>
 
+<?echo '<div>TEST</div>'?>
+
 </body>
 </html>

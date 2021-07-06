@@ -1,13 +1,13 @@
 class SpotifyAPI extends AjaxInterface{
-	constructor() {
+	constructor(clientId, redirectUrl) {
 		super();
 
 		this.baseUrl = 'https://api.spotify.com/v1/';
-		this.clientId = '8469a359cbb048ee8cb53dbbb255f17f';
-		this.redirectUrl = 'https://solospirit.github.io/YMusify/';
+		this.clientId = clientId;
+		this.redirectUrl = redirectUrl;
 	}
 
-	async openLoginWindow() {
+	openLoginWindow() {
 		const data = {
 			client_id: this.clientId,
 			response_type: 'token',
@@ -18,12 +18,5 @@ class SpotifyAPI extends AjaxInterface{
 		url.search = new URLSearchParams(data).toString();
 
 		location.href = url.href;
-	}
-
-	async getUser(userId) {
-		let res = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`);
-		res = await res.json();
-
-		console.log(res);
 	}
 }

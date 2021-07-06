@@ -1,7 +1,8 @@
 // ### TESTS
 
 const spotifyAPI = new SpotifyAPI();
-const spotifyAuthCode = new URL(location.href).searchParams.get('code');
+const spotifyAuthCode = new URL(location.href).hash;
+console.log(spotifyAuthCode);
 
 
 document.addEventListener('DOMContentLoaded', () => {

@@ -17,6 +17,6 @@ class SpotifyAPI extends Common{
 		const url = new URL('https://accounts.spotify.com/authorize');
 		url.search = new URLSearchParams(data).toString();
 
-		location.href = url.href;
+		window.open(url.href, '_blank', 'location=yes,scrollbars=yes,status=yes');
 	}
 }

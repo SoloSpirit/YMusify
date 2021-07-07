@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<link href="css/main.css" rel="stylesheet">
+	<link href="css/components.css" rel="stylesheet">
+	<link href="css/app.css" rel="stylesheet">
 	<script src="js/API/common.js"></script>
 	<script src="js/API/spotifyAPI.js"></script>
 	<script src="js/API/yMusicAPI.js"></script>
@@ -16,30 +17,50 @@
 			<span class="app_logo">YMusify</span>
 
 			<div class="transfer_music">
-				<img class="logo spotify_logo" src="img/spotify_icon.png" alt="spotify">
+				<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 				<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
-				<img class="logo ymusic_logo" src="img/ymusic_icon.png" alt="ymusic">
+				<img class="logo ymusic_logo" src="img/ymusic.png" alt="ymusic">
 			</div>
 		</header>
 
 		<main>
 			<section class="main_screen" data-step="0">
 				<div class="transfer_music">
-					<img class="logo spotify_logo" src="img/spotify_icon.png" alt="spotify">
+					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 					<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
-					<img class="logo ymusic_logo" src="img/ymusic_icon.png" alt="ymusic">
+					<img class="logo ymusic_logo" src="img/ymusic.png" alt="ymusic">
 				</div>
 
-				<h1 class="text screen_title">Transfer your favorites between Spotify and Yandex.Music</h1>
-				<p class="text screen_description">Stop wasting your time transferring music data between these streaming platforms, let YMusify do the job!</p>
+				<h1 class="text screen_title">
+					Transfer your favorites between Spotify and Yandex.Music
+				</h1>
+				<p class="text screen_description">
+					Stop wasting your time transferring music data between these streaming platforms, let YMusify do the job!
+				</p>
 
-				<div class="btn gradient with_margin" data-to_step="">Start now</div>
+				<div class="btn" data-to_step="1">Start now</div>
+			</section>
+
+			<section class="spotify_token">
+				<div class="transfer_music">
+					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
+				</div>
+
+				<p class="text screen_title">
+					Please, enter Spotify authorization token
+				</p>
+				<label class="screen_input"><input></label>
+				<p class="text screen_description no_margin">
+					Do not have one? Don't worry, <span class="link_opener" data-action="get_spotify_token">just get it</span>
+				</p>
+
+				<div class="btn green" data-to_step="2">Next step</div>
 			</section>
 		</main>
 
 		<footer>
 			<div class="back" data-to_step="0" title="Go back">
-				<img src="img/arrow_back.svg" alt="back">
+				<img src="img/back.svg" alt="back">
 			</div>
 		</footer>
 	</div>

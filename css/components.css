@@ -1,0 +1,99 @@
+/* Screen text */
+.text{
+	max-width: 550px;
+}
+.screen_title{
+	margin: 25px 0 0;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 1.4em;
+}
+.screen_description{
+	margin: 15px 0 0;
+	color: var(--color-gray-ll);
+	line-height: 1.6em;
+}
+.screen_description.no_margin{
+	margin: 0;
+}
+
+/* Buttons */
+.btn{
+	cursor: pointer;
+	border-radius: 4px;
+	background: linear-gradient(90deg, var(--color-green) 0%, var(--color-yellow) 75%);
+	width: 100%;
+	max-width: 300px;
+	height: 40px;
+	margin: 25px 0 0;
+	color: var(--color-gray);
+	font-weight: 600;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.btn.green{
+	background: var(--color-green);
+}
+.btn.yellow{
+	background: var(--color-yellow);
+}
+.btn.no_margin{
+	margin: 0;
+}
+.btn:hover{
+	filter: brightness(110%);
+}
+
+/* Transfer music image */
+.transfer_music{
+	display: flex;
+	align-items: center;
+}
+.transfer_music .logo{
+	width: 110px;
+}
+.transfer_music .transfer_icon{
+	margin: 0 20px;
+	opacity: 0.3;
+	filter: invert(100%);
+}
+
+/* Input */
+.screen_input{
+	width: 100%;
+	margin: 15px 0 5px;
+}
+.screen_input input{
+	border-radius: 4px;
+	border: 1px solid var(--color-gray-l);
+	background: rgba(255, 255, 255, 0.1);
+	width: 100%;
+	max-width: 550px;
+	height: 40px;
+	padding: 0 15px;
+	box-sizing: border-box;
+	color: var(--color-white);
+	font-size: 16px;
+	outline: none;
+}
+.screen_input input:focus{
+	border-color: var(--color-white);
+}
+.screen_input.error input{
+	border-color: var(--color-red);
+	color: var(--color-red);
+}
+
+/* Link opener */
+.link_opener{
+	cursor: pointer;
+	color: var(--color-green);
+}
+.link_opener.yellow{
+	color: var(--color-yellow);
+}
+.link_opener:hover{
+	text-decoration: underline;
+}

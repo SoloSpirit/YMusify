@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
 
-/* Common */
+/* Page settings */
 :root{
 	--color-white: #F4F4F4;
 	--color-gray: #181818;
@@ -9,11 +9,13 @@
 	--color-gray-d: #121212;
 	--color-green: #1ED760;
 	--color-yellow: #FCCA00;
+	--color-red: #FC3F1D;
 
 	--header-height: 45px;
 	--footer-height: 25px;
 	--app-padding: 20px;
 }
+
 body{
 	background: var(--color-gray-d);
 	height: 100vh;
@@ -27,6 +29,8 @@ body{
 	align-items: center;
 	justify-content: center;
 }
+
+/* Application */
 .app{
 	border-radius: 8px;
 	background: var(--color-gray);
@@ -40,64 +44,7 @@ body{
 	overflow: hidden;
 }
 
-/* Screen text */
-.screen_title{
-	margin: 25px 0 0;
-	font-size: 24px;
-	font-weight: 400;
-	line-height: 1.4em;
-}
-.screen_description{
-	margin: 15px 0 0;
-	color: var(--color-gray-ll);
-	line-height: 1.6em;
-}
-
-/* Buttons */
-.btn{
-	cursor: pointer;
-	border-radius: 4px;
-	width: 100%;
-	max-width: 300px;
-	height: 40px;
-	color: var(--color-gray);
-	font-weight: 600;
-	text-transform: uppercase;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.btn.green{
-	background: var(--color-green);
-}
-.btn.yellow{
-	background: var(--color-yellow);
-}
-.btn.gradient{
-	background: linear-gradient(90deg, var(--color-green) 0%, var(--color-yellow) 75%);
-}
-.btn.with_margin{
-	margin: 25px 0 0;
-}
-.btn:hover{
-	filter: brightness(110%);
-}
-
-/* Transfer music image */
-.transfer_music{
-	display: flex;
-	align-items: center;
-}
-.transfer_music .logo{
-	width: 110px;
-}
-.transfer_music .transfer_icon{
-	margin: 0 20px;
-	opacity: 0.3;
-	filter: invert(100%);
-}
-
-/* App header */
+/* Application header */
 header{
 	height: var(--header-height);
 	padding: var(--app-padding) var(--app-padding) 0;
@@ -120,23 +67,26 @@ header .transfer_music .transfer_icon{
 	margin: 0 5px;
 }
 
-/* Main content */
+/* Application content */
 main{
 	padding: var(--app-padding);
 }
-
-/* Main screen */
-section.main_screen{
+section{
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-section.main_screen .text{
-	max-width: 550px;
+
+/* Main screen */
+section.main_screen{
+	display: none;
 }
 
-/* App footer */
+/* Spotify token */
+section.spotify_token{}
+
+/* Application footer */
 footer{
 	height: var(--footer-height);
 	padding: 0 var(--app-padding) var(--app-padding);

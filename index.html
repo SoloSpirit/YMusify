@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<link href="css/main.css" rel="stylesheet">
-	<script src="js/API/ajaxInterface.js"></script>
+	<script src="js/API/common.js"></script>
 	<script src="js/API/spotifyAPI.js"></script>
 	<script src="js/API/yMusicAPI.js"></script>
 	<script src="js/API/yMusify.js"></script>
@@ -11,14 +11,37 @@
 	<title>YMusify</title>
 </head>
 <body>
-	<main class="app">
-		<section class="logos">
+	<div class="app">
+		<header>
+			<span class="app_logo">YMusify</span>
 
-		</section>
+			<div class="transfer_music">
+				<img class="logo spotify_logo" src="img/spotify_icon.png" alt="spotify">
+				<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
+				<img class="logo ymusic_logo" src="img/ymusic_icon.png" alt="ymusic">
+			</div>
+		</header>
 
-		<section class="main_screen">
+		<main>
+			<section class="main_screen" data-step="0">
+				<div class="transfer_music">
+					<img class="logo spotify_logo" src="img/spotify_icon.png" alt="spotify">
+					<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
+					<img class="logo ymusic_logo" src="img/ymusic_icon.png" alt="ymusic">
+				</div>
 
-		</section>
-	</main>
+				<h1 class="text screen_title">Transfer your favorites between Spotify and Yandex.Music</h1>
+				<p class="text screen_description">Stop wasting your time transferring music data between these streaming platforms, let YMusify do the job!</p>
+
+				<div class="btn gradient with_margin" data-to_step="">Start now</div>
+			</section>
+		</main>
+
+		<footer>
+			<div class="back" data-to_step="0" title="Go back">
+				<img src="img/arrow_back.svg" alt="back">
+			</div>
+		</footer>
+	</div>
 </body>
 </html>

@@ -13,5 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Event listeners
 	spotifyConnectBtn.addEventListener('click', () => {
 		YMusify.getSpotifyAuthToken();
+
+
 	});
 });

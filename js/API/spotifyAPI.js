@@ -1,4 +1,4 @@
-class SpotifyAPI extends AjaxInterface{
+class SpotifyAPI extends Common{
 	constructor(clientId, redirectUrl) {
 		super();
 

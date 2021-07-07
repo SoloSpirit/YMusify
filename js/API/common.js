@@ -1,9 +1,9 @@
-class AjaxInterface {
+class Common {
 	// Do request, available methods: GET, POST
-	async sendRequest(method, url, data, headers) {
+	static async sendRequest(method, url, data, headers) {
 		// Handle main errors
 		if (!['GET', 'POST'].includes(method)) return console.error('Only GET and POST methods are available.');
-		if (!AjaxInterface.#validateUrl(url)) return console.error('Invalid URL for request.');
+		if (!Common.#validateUrl(url)) return console.error('Invalid URL for request.');
 		if (headers && typeof headers !== 'object') return console.error('Headers must be of type "Object"');
 
 		const options = {
@@ -25,7 +25,6 @@ class AjaxInterface {
 		}
 
 		const response = await fetch(url, options);
-
 		return await response.json();
 	}
 

@@ -1,10 +1,10 @@
 // Constants for YMusify API
 const SPOTIFY_CLIENT_ID = '8469a359cbb048ee8cb53dbbb255f17f';
-const REDIRECT_URL = 'https://solospirit.github.io/YMusify/redirect.html';
+const REDIRECT_URI = 'https://solospirit.github.io/YMusify/redirect.html';
 
 document.addEventListener('DOMContentLoaded', () => {
 	// Create main API instance
-	const yMusify = new YMusify(SPOTIFY_CLIENT_ID, REDIRECT_URL);
+	const yMusify = new YMusify(SPOTIFY_CLIENT_ID, REDIRECT_URI);
 	const app = document.querySelector('.app');
 
 	// The architecture of the application is simple, so let's use event delegation
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		switch (action) {
 			case 'get_spotify_token':
-				yMusify.getSpotifyAuthToken();
+				yMusify.getSpotifyAccessToken();
 
 				break;
 		}

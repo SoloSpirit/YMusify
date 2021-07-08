@@ -1,3 +1,3 @@
-class YMusicAPI extends Common{
+class YMusicAPI extends Common {
 
 }

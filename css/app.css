@@ -82,11 +82,11 @@ section{
 
 /* Main screen */
 section.main_screen{
-	display: none;
+	/*display: none;*/
 }
 
 /* Spotify token */
-section.spotify_token{}
+section.spotify_token{display: none;}
 
 /* Application footer */
 footer{

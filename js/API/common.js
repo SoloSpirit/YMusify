@@ -11,7 +11,6 @@ class Common {
 
 		const options = {
 			method: method,
-			// mode: 'no-cors',
 			cache: 'no-cache',
 			headers: new Headers({'Content-Type': 'application/json', ...headers})
 		}

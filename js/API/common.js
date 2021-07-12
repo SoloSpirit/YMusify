@@ -6,6 +6,8 @@ class Common {
 		if (!Common.#validateUrl(url)) return console.error('Invalid URL for request.');
 		if (headers && typeof headers !== 'object') return console.error('Headers must be of type "Object"');
 
+		if(data === undefined) data = {};
+
 		const options = {
 			method: method,
 			mode: 'no-cors',
@@ -23,6 +25,8 @@ class Common {
 		} else {
 			options.body = JSON.stringify(data);
 		}
+
+		console.log(options);
 
 		const response = await fetch(url, options);
 		return await response.json();

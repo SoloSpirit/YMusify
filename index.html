@@ -34,10 +34,10 @@
 				<h1 class="text screen_title">Transfer your favorites between Spotify and Yandex.Music</h1>
 				<p class="text screen_description">Stop wasting your time transferring music data between these streaming platforms, let YMusify do the job!</p>
 
-				<div class="btn" data-to_step="1">Start now</div>
+				<div class="btn" data-action="go_to_step" data-to_step="1">Start now</div>
 			</section>
 
-			<section class="spotify_token">
+			<section class="spotify_token hidden" data-step="1">
 				<div class="transfer_music">
 					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 				</div>
@@ -48,12 +48,12 @@
 					Do not have one? Don't worry, <span class="link_opener" data-action="get_spotify_token">just get it</span>
 				</p>
 
-				<div class="btn green" data-to_step="2">Next step</div>
+				<div class="btn green" data-action="go_to_step" data-to_step="2">Next step</div>
 			</section>
 		</main>
 
 		<footer>
-			<div class="back" data-to_step="0" title="Go back">
+			<div class="back" data-action="go_to_step" data-to_step="1" title="Go back">
 				<img src="img/back.svg" alt="back">
 			</div>
 		</footer>

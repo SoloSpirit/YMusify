@@ -79,14 +79,9 @@ section{
 	flex-direction: column;
 	align-items: center;
 }
-
-/* Main screen */
-section.main_screen{
-	/*display: none;*/
+section.hidden{
+	display: none;
 }
-
-/* Spotify token */
-section.spotify_token{display: none;}
 
 /* Application footer */
 footer{
@@ -106,6 +101,7 @@ footer .back{
 	justify-content: center;
 }
 footer .back img{
+	pointer-events: none;
 	width: 14px;
 	opacity: 0.3;
 	filter: invert(100%);

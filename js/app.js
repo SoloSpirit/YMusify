@@ -10,44 +10,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// The architecture of the application is simple, so let's use event delegation
 	app.addEventListener('click', event => {
-		if(!event.target || !event.target.matches('[data-action]')) return;
+		const action = event.target.dataset.action;
 
-		const availableEventTypes = ['action', 'toStep'];
-		let appEventType = '';
-		if(event.target.matches('[data-action]')) appEventType = 'action';
-		if(event.target.matches('[data-to_step]')) appEventType = 'toStep';
-
-		if(!availableEventTypes.includes(appEventType)) return;
-
-		switch (appEventType) {
-			case 'action':
-				const action = event.target.getAttribute('data-action');
-				handleAction(action);
+		switch (action) {
+			// Get Spotify access token
+			case 'get_spotify_token':
+				yMusify.spotifyGetAccessToken();
 
 				break;
-			case 'toStep':
-				const step = event.target.getAttribute('data-to_step');
-				goToStep(step);
+			// Go to the specified step
+			case 'go_to_step':
+				const step = event.target.dataset.to_step;
+				const isBack = event.target.classList.contains('back');
+
+				goToStep(step, isBack);
 
 				break;
 		}
 
 	});
-
-
 });
 
-function handleAction(action) {
-	switch (action) {
-		case 'get_spotify_token':
-			yMusify.getSpotifyAccessToken();
+// Show the desired application screen depending on the step number
+async function goToStep(step, isBack) {
+	step *= 1;
+
+	switch (step) {
+		case 2:
+			const spotifyAccessTokenInput = document.querySelector('[name="spotify_access_token"]');
+
+			if (spotifyAccessTokenInput.value.length < 20) {
+				spotifyAccessTokenInput.parentElement.classList.add('error');
+			} else {
+				yMusify.spotifySetAccessToken(spotifyAccessTokenInput.value);
+
+				spotifyAccessTokenInput.parentElement.classList.remove('error');
+			}
 
 			break;
-	}
-}
-
-function goToStep(step) {
-	switch (step) {
-
+		default:
+			document.querySelectorAll('[data-step]').forEach(section => section.classList.add('hidden'));
+			document.querySelector(`[data-step="${step}"]`).classList.remove('hidden');
 	}
 }

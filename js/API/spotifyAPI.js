@@ -48,7 +48,7 @@ class SpotifyAPI extends Common {
 	// Validate current Spotify access token:
 	// - token - the value that must be validated
 	async validateAccessToken(token) {
-		const headers =  { 'Authorization': 'Bearer ' + token }
+		const headers = {'Authorization': 'Bearer ' + token}
 		return await Common.sendRequest('GET', this.#baseUrl + 'me', {}, headers);
 	}
 }

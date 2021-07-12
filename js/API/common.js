@@ -7,15 +7,13 @@ class Common {
 		if (headers && typeof headers !== 'object') return console.error('Headers must be of type "Object"');
 
 		if(data === undefined) data = {};
+		if(headers === undefined) headers = {};
 
 		const options = {
 			method: method,
-			mode: 'no-cors',
+			// mode: 'no-cors',
 			cache: 'no-cache',
-			headers: {
-				'Content-Type': 'application/json',
-				...headers
-			}
+			headers: new Headers({'Content-Type': 'application/json', ...headers})
 		}
 
 		if (method === 'GET') {

@@ -81,7 +81,8 @@
 .screen_input input:focus:not(:read-only){
 	border-color: var(--color-white);
 }
-.screen_input.error input{
+.screen_input.error input,
+.screen_input.error input:focus{
 	border-color: var(--color-red);
 	color: var(--color-red);
 }

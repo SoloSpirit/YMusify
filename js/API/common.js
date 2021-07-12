@@ -11,6 +11,7 @@ class Common {
 
 		const options = {
 			method: method,
+			cors: 'no-cors',
 			cache: 'no-cache',
 			headers: new Headers({'Content-Type': 'application/json', ...headers})
 		}
@@ -26,7 +27,8 @@ class Common {
 		console.log(options);
 
 		const response = await fetch(url, options);
-		console.log(response);
+		if (!response.ok) return false;
+
 		return await response.json();
 	}
 

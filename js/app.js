@@ -32,24 +32,42 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Show the desired application screen depending on the step number
-async function goToStep(step, isBack) {
-	step *= 1;
+async function goToStep(applicationStep, isBack) {
+	applicationStep *= 1;
 
-	switch (step) {
-		case 2:
-			const spotifyAccessTokenInput = document.querySelector('[name="spotify_access_token"]');
+	const app = document.querySelector('.app');
 
-			if (spotifyAccessTokenInput.value.length < 20) {
-				spotifyAccessTokenInput.parentElement.classList.add('error');
-			} else {
-				yMusify.spotifySetAccessToken(spotifyAccessTokenInput.value);
+	if(applicationStep > 1)
+		app.classList.remove('app_start');
+	else
+		app.classList.add('app_start');
 
-				spotifyAccessTokenInput.parentElement.classList.remove('error');
-			}
+	if (!isBack) {
+		switch (applicationStep) {
+			// Spotify access token validation
+			case 3:
+				const spotifyAccessTokenInput = document.querySelector('[name="spotify_access_token"]');
 
-			break;
-		default:
-			document.querySelectorAll('[data-step]').forEach(section => section.classList.add('hidden'));
-			document.querySelector(`[data-step="${step}"]`).classList.remove('hidden');
+				if (spotifyAccessTokenInput.value.length < 20) {
+					spotifyAccessTokenInput.parentElement.classList.add('error');
+					return alert('Token is invalid');
+				} else {
+					const tokenIsSet = await yMusify.spotifySetAccessToken(spotifyAccessTokenInput.value);
+
+					if (tokenIsSet) {
+						spotifyAccessTokenInput.parentElement.classList.remove('error');
+					} else {
+						spotifyAccessTokenInput.parentElement.classList.add('error');
+						return alert('Token is invalid');
+					}
+
+				}
+
+				break;
+		}
 	}
+
+	document.querySelectorAll('[data-step]').forEach(section => section.classList.add('hidden'));
+	document.querySelector(`[data-step="${applicationStep}"]`).classList.remove('hidden');
+	document.querySelector('.back[data-to_step]').dataset.to_step = `${applicationStep - 1}`;
 }

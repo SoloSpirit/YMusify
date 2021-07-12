@@ -22,8 +22,9 @@ class YMusify {
 	// - token - Spotify API access token will be set to this value after successful validation
 	async spotifySetAccessToken(token) {
 		const response = await this.#spotifyAPI.validateAccessToken(token);
-		console.log(response);
+		if (!response) return false;
 
 		this.#spotifyAPI.accessToken = token;
+		return true;
 	}
 }

@@ -3,7 +3,7 @@ class YMusicAPI extends Common {
 	#clientId = '23cabbbdc6cd418abb4b39c32c41195d';
 	#clientSecret = '53bc75238f0c4d08a118e51fe9203300';
 	#baseUrl = 'https://api.music.yandex.net';
-	#oauthUrl = 'https://oauth.yandex.ru';
+	#oauthUrl = 'https://oauth.mobile.yandex.net';
 	#grantType = 'password';
 	#headers = {
 		// 'X-Yandex-Music-Client': 'YandexMusicAndroid/23020251',
@@ -27,7 +27,7 @@ class YMusicAPI extends Common {
 			password: password
 		}
 
-		const response = await Common.sendRequest('POST', this.#oauthUrl + '/token', data, this.#headers);
+		const response = await Common.sendRequest('POST', this.#oauthUrl + '/1/token', data);
 		console.log(response);
 	}
 }

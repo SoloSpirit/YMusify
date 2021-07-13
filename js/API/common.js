@@ -11,7 +11,7 @@ class Common {
 
 		const options = {
 			method: method,
-			cors: 'cors',
+			cors: 'no-cors',
 			cache: 'no-cache',
 			headers: new Headers({'Content-Type': 'application/x-www-form-urlencoded', ...headers})
 		}

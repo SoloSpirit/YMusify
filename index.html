@@ -24,7 +24,7 @@
 		</header>
 
 		<main>
-			<section class="main_screen" data-step="1">
+			<section class="main_screen hidden" data-step="1">
 				<div class="transfer_music">
 					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 					<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
@@ -51,16 +51,18 @@
 				<div class="btn green" data-action="go_to_step" data-to_step="3">Next step</div>
 			</section>
 
-			<section class="ymusic_token hidden" data-step="3">
+			<section class="ymusic_token" data-step="3">
 				<div class="transfer_music">
 					<img class="logo ymusic_logo" src="img/ymusic.png" alt="ymusic">
 				</div>
 
-				<p class="text screen_title">Please, enter Yandex.Music access token</p>
-				<label class="screen_input"><input name="spotify_access_token"></label>
-				<p class="text screen_description no_margin">
-					Do not have one? Don't worry, <span class="link_opener" data-action="get_ymusic_token">just get it</span>
-				</p>
+				<p class="text screen_title">Please, log in to Yandex.Music</p>
+				<label class="screen_input">
+					<input name="ymusic_login" placeholder="Login">
+				</label>
+				<label class="screen_input">
+					<input name="ymusic_password" type="password" placeholder="Password">
+				</label>
 
 				<div class="btn yellow" data-action="go_to_step" data-to_step="4">Next step</div>
 			</section>

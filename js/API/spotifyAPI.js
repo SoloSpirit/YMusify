@@ -2,18 +2,17 @@
 // - clientId - the client ID provided to you by Spotify when you register your application
 // - redirectUri - the URI to redirect to after the user grants/denies permission
 class SpotifyAPI extends Common {
-	#baseUrl;
+	#baseUrl = 'https://api.spotify.com/v1';
+	#scope = 'user-read-private user-read-email';
+
 	#clientId;
-	#scope;
 	#redirectUri;
 	#_accessToken;
 
 	constructor(clientId, redirectUri) {
 		super();
 
-		this.#baseUrl = 'https://api.spotify.com/v1/';
 		this.#clientId = clientId;
-		this.#scope = 'user-read-private user-read-email'
 		this.#redirectUri = redirectUri;
 	}
 
@@ -49,6 +48,6 @@ class SpotifyAPI extends Common {
 	// - token - the value that must be validated
 	async validateAccessToken(token) {
 		const headers = {'Authorization': 'Bearer ' + token}
-		return await Common.sendRequest('GET', this.#baseUrl + 'me', {}, headers);
+		return await Common.sendRequest('GET', this.#baseUrl + '/me', {}, headers);
 	}
 }

@@ -64,10 +64,39 @@ async function goToStep(applicationStep, isBack) {
 				}
 
 				break;
+			case 4:
+				const yMusicLoginInput = document.querySelector('[name="ymusic_login"]');
+				const yMusicPasswordInput = document.querySelector('[name="ymusic_password"]');
+
+				if (yMusicLoginInput.value.length < 8) {
+					yMusicLoginInput.parentElement.classList.add('error');
+					return alert('Yandex login is invalid')
+				} else {
+					yMusicLoginInput.parentElement.classList.remove('error');
+				}
+
+				if (yMusicPasswordInput.value.length < 4) {
+					yMusicPasswordInput.parentElement.classList.add('error');
+					return alert('Yandex password is invalid')
+				} else {
+					yMusicPasswordInput.parentElement.classList.remove('error');
+				}
+
+				const response = await yMusify.yMusicGetAccessToken(yMusicLoginInput.value, yMusicPasswordInput.value);
+				if (!response) {
+					yMusicLoginInput.parentElement.classList.add('error');
+					yMusicPasswordInput.parentElement.classList.add('error');
+					return alert('Yandex login / password is invalid');
+				} else {
+					yMusicLoginInput.parentElement.classList.remove('error');
+					yMusicPasswordInput.parentElement.classList.remove('error');
+				}
+
+				break;
 		}
 	}
 
-	document.querySelectorAll('[data-step]').forEach(section => section.classList.add('hidden'));
-	document.querySelector(`[data-step="${applicationStep}"]`).classList.remove('hidden');
+	// document.querySelectorAll('[data-step]').forEach(section => section.classList.add('hidden'));
+	// document.querySelector(`[data-step="${applicationStep}"]`).classList.remove('hidden');
 	document.querySelector('.back[data-to_step]').dataset.to_step = `${applicationStep - 1}`;
 }

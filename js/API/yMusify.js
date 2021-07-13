@@ -27,4 +27,12 @@ class YMusify {
 		this.#spotifyAPI.accessToken = token;
 		return true;
 	}
+
+	// Get Yandex.Music access token:
+	// - yMusicLogin - Yandex login
+	// - yMusicPassword - Yandex password
+	async yMusicGetAccessToken(yMusicLogin, yMusicPassword) {
+		const response = await this.#yMusicAPI.genTokenFromCredentials(yMusicLogin, yMusicPassword);
+		if(!response) return false;
+	}
 }

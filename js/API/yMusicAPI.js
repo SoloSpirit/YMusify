@@ -6,9 +6,11 @@ class YMusicAPI extends Common {
 	#oauthUrl = 'https://oauth.yandex.ru';
 	#grantType = 'password';
 	#headers = {
-		'X-Yandex-Music-Client': 'WindowsPhone/3.17',
-		'User-Agent': 'Windows 10',
-		'Connection': 'Keep-Alive'
+		// 'X-Yandex-Music-Client': 'YandexMusicAndroid/23020251',
+		'User-Agent': 'Yandex-Music-API',
+		'Accept-Language': 'en',
+		'X-Requested-With': 'XMLHttpRequest'
+		// 'Connection': 'Keep-Alive'
 	}
 
 	constructor(){

@@ -11,9 +11,9 @@ class Common {
 
 		const options = {
 			method: method,
-			cors: 'no-cors',
+			cors: 'cors',
 			cache: 'no-cache',
-			headers: new Headers({'Content-Type': 'application/json', ...headers})
+			headers: new Headers({'Content-Type': 'application/x-www-form-urlencoded', ...headers})
 		}
 
 		if (method === 'GET') {

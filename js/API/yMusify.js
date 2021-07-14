@@ -19,7 +19,7 @@ class YMusify {
 	}
 
 	// Set Spotify access token:
-	// - token - Spotify API access token will be set to this value after successful validation
+	// - token - Spotify access token will be set to this value after successful validation
 	async spotifySetAccessToken(token) {
 		const response = await this.#spotifyAPI.validateAccessToken(token);
 		if (!response) return false;
@@ -32,7 +32,10 @@ class YMusify {
 	// - yMusicLogin - Yandex login
 	// - yMusicPassword - Yandex password
 	async yMusicGetAccessToken(yMusicLogin, yMusicPassword) {
-		const response = await this.#yMusicAPI.genTokenFromCredentials(yMusicLogin, yMusicPassword);
-		if(!response) return false;
+		const accessToken = await this.#yMusicAPI.genTokenFromCredentials(yMusicLogin, yMusicPassword);
+		if (!accessToken) return false;
+
+		this.#yMusicAPI.accessToken = accessToken;
+		return true;
 	}
 }

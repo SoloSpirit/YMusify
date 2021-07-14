@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<link href="css/components.css" rel="stylesheet">
 	<link href="css/app.css" rel="stylesheet">
-	<script src="js/API/common.js"></script>
+	<script src="js/API/requestInterface.js"></script>
 	<script src="js/API/spotifyAPI.js"></script>
 	<script src="js/API/yMusicAPI.js"></script>
 	<script src="js/API/yMusify.js"></script>
@@ -24,7 +24,8 @@
 		</header>
 
 		<main>
-			<section class="main_screen hidden" data-step="1">
+			<!-- Start screen -->
+			<section data-screen="1">
 				<div class="transfer_music">
 					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 					<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
@@ -34,10 +35,11 @@
 				<h1 class="text screen_title">Transfer your favorites between Spotify and Yandex.Music</h1>
 				<p class="text screen_description">Stop wasting your time transferring music data between these streaming platforms, let YMusify do the job!</p>
 
-				<div class="btn" data-action="go_to_step" data-to_step="2">Start now</div>
+				<div class="btn" data-to_screen="2">Start now</div>
 			</section>
 
-			<section class="spotify_token hidden" data-step="2">
+			<!-- Spotify access token -->
+			<section class="hidden" data-screen="2">
 				<div class="transfer_music">
 					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 				</div>
@@ -48,10 +50,11 @@
 					Do not have one? Don't worry, <span class="link_opener" data-action="get_spotify_token">just get it</span>
 				</p>
 
-				<div class="btn green" data-action="go_to_step" data-to_step="3">Next step</div>
+				<div class="btn green" data-action="set_spotify_token" data-to_screen="3">Next step</div>
 			</section>
 
-			<section class="ymusic_token" data-step="3">
+			<!-- Yandex.Music access token -->
+			<section class="hidden" data-screen="3">
 				<div class="transfer_music">
 					<img class="logo ymusic_logo" src="img/ymusic.png" alt="ymusic">
 				</div>
@@ -64,12 +67,39 @@
 					<input name="ymusic_password" type="password" placeholder="Password">
 				</label>
 
-				<div class="btn yellow" data-action="go_to_step" data-to_step="4">Next step</div>
+				<div class="btn yellow" data-action="set_ymusic_token" data-to_screen="4">Next step</div>
+			</section>
+
+			<!-- Transfer type select -->
+			<section class="hidden" data-screen="4">
+				<p class="text screen_title">Please, choose the way you'd like to transfer your music</p>
+
+				<div class="transfer_types">
+					<label class="radio">
+						<input type="radio" name="transfer_type" value="spotify_to_ym" checked>
+						<span class="checkmark"></span>
+						<span class="radio_text">
+							From <img src="img/spotify.png" alt="spotify"> <span class="green">Spotify</span>
+							to <img src="img/ymusic.png" alt="ymusic"> <span class="yellow">Yandex.Music</span>
+						</span>
+					</label>
+
+					<label class="radio">
+						<input type="radio" name="transfer_type" value="ym_to_spotify">
+						<span class="checkmark"></span>
+						<span class="radio_text">
+							From <img src="img/ymusic.png" alt="ymusic"> <span class="yellow">Yandex.Music</span>
+							to <img src="img/spotify.png" alt="spotify"> <span class="green">Spotify</span>
+						</span>
+					</label>
+				</div>
+
+				<div class="btn no_margin">Start transfer</div>
 			</section>
 		</main>
 
 		<footer>
-			<div class="back" data-action="go_to_step" data-to_step="1" title="Go back">
+			<div class="back" data-to_screen="1" title="Go back">
 				<img src="img/back.svg" alt="back">
 			</div>
 		</footer>

@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	const app = document.querySelector('.app');
 
 	// The architecture of the application is simple, so let's use event delegation
-	app.addEventListener('click', event => {
+	app.addEventListener('click', async event => {
 		const action = event.target.dataset.action;
+		const toScreen = event.target.dataset.to_screen;
 
 		switch (action) {
 			// Get Spotify access token
@@ -18,34 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				yMusify.spotifyGetAccessToken();
 
 				break;
-			// Go to the specified step
-			case 'go_to_step':
-				const step = event.target.dataset.to_step;
-				const isBack = event.target.classList.contains('back');
-
-				goToStep(step, isBack);
-
-				break;
-		}
-
-	});
-});
-
-// Show the desired application screen depending on the step number
-async function goToStep(applicationStep, isBack) {
-	applicationStep *= 1;
-
-	const app = document.querySelector('.app');
-
-	if(applicationStep > 1)
-		app.classList.remove('app_start');
-	else
-		app.classList.add('app_start');
-
-	if (!isBack) {
-		switch (applicationStep) {
-			// Spotify access token validation
-			case 3:
+			// Set Spotify access token
+			case 'set_spotify_token':
 				const spotifyAccessTokenInput = document.querySelector('[name="spotify_access_token"]');
 
 				if (spotifyAccessTokenInput.value.length < 20) {
@@ -60,11 +35,11 @@ async function goToStep(applicationStep, isBack) {
 						spotifyAccessTokenInput.parentElement.classList.add('error');
 						return alert('Token is invalid');
 					}
-
 				}
 
 				break;
-			case 4:
+			// Set Yandex.Music access token
+			case 'set_ymusic_token':
 				const yMusicLoginInput = document.querySelector('[name="ymusic_login"]');
 				const yMusicPasswordInput = document.querySelector('[name="ymusic_password"]');
 
@@ -94,9 +69,37 @@ async function goToStep(applicationStep, isBack) {
 
 				break;
 		}
-	}
 
-	// document.querySelectorAll('[data-step]').forEach(section => section.classList.add('hidden'));
-	// document.querySelector(`[data-step="${applicationStep}"]`).classList.remove('hidden');
-	document.querySelector('.back[data-to_step]').dataset.to_step = `${applicationStep - 1}`;
+		if(toScreen) goToScreen(toScreen);
+	});
+});
+
+// Show the desired application screen depending on the step number
+function goToScreen(appScreenNumber) {
+	const app = document.querySelector('.app');
+	appScreenNumber *= 1;
+
+	// Set application start class
+	if(appScreenNumber <= 1) app.classList.add('app_start');
+
+	// Screen animation
+	const animationDuration = 300;
+	const appScreens = document.querySelectorAll('[data-screen]');
+	const appScreenActive = document.querySelector(`[data-screen="${appScreenNumber}"]`)
+
+	appScreens.forEach(screen => screen.style.opacity = '0');
+	setTimeout(() => {
+		appScreens.forEach(screen => screen.classList.add('hidden'));
+		appScreenActive.classList.remove('hidden');
+	}, animationDuration);
+
+	setTimeout(() => {
+		appScreenActive.style.opacity = '1';
+
+		// Remove application start class
+		if(appScreenNumber > 1) app.classList.remove('app_start');
+	}, animationDuration + 100)
+
+	// Set new screen number to back button
+	document.querySelector('.back[data-to_screen]').dataset.to_screen = `${appScreenNumber - 1}`;
 }

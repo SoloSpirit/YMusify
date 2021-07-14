@@ -21,7 +21,7 @@ class Common {
 			url.search = new URLSearchParams(data).toString();
 			url = url.href;
 		} else {
-			options.body = JSON.stringify(data);
+			options.body = new URLSearchParams(data);
 		}
 
 		console.log(options);

@@ -25,7 +25,7 @@
 
 		<main>
 			<!-- Start screen -->
-			<section data-screen="1">
+			<section class="hidden" data-screen="1">
 				<div class="transfer_music">
 					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 					<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
@@ -54,17 +54,17 @@
 			</section>
 
 			<!-- Yandex.Music access token -->
-			<section class="hidden" data-screen="3">
+			<section class="" data-screen="3">
 				<div class="transfer_music">
 					<img class="logo ymusic_logo" src="img/ymusic.png" alt="ymusic">
 				</div>
 
 				<p class="text screen_title">Please, log in to Yandex.Music</p>
 				<label class="screen_input">
-					<input name="ymusic_login" placeholder="Login">
+					<input name="ymusic_login" placeholder="Login" value="ssd13-99@ya.ru">
 				</label>
 				<label class="screen_input">
-					<input name="ymusic_password" type="password" placeholder="Password">
+					<input name="ymusic_password" type="password" placeholder="Password" value="Mskismylf171199">
 				</label>
 
 				<div class="btn yellow" data-action="set_ymusic_token" data-to_screen="4">Next step</div>

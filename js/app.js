@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				break;
 		}
 
-		if(toScreen) goToScreen(toScreen);
+		// if(toScreen) goToScreen(toScreen);
 	});
 });
 

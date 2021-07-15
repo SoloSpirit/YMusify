@@ -35,7 +35,7 @@ class YMusify {
 		const accessToken = await this.#yMusicAPI.genTokenFromCredentials(yMusicLogin, yMusicPassword);
 		if (!accessToken) return false;
 
-		this.#yMusicAPI.accessToken = accessToken;
+		// this.#yMusicAPI.accessToken = accessToken;
 		return true;
 	}
 }

@@ -6,6 +6,7 @@ class YMusicAPI extends RequestInterface {
 	#oauthUrl = 'https://oauth.yandex.ru';
 	#grantType = 'password';
 
+	#uid;
 	#_accessToken;
 
 	constructor(){
@@ -25,18 +26,34 @@ class YMusicAPI extends RequestInterface {
 
 	// Get Yandex access token by login/password pair
 	async genTokenFromCredentials(login, password) {
-		const data = {
-			grant_type: this.#grantType,
-			client_id: this.#clientId,
-			client_secret: this.#clientSecret,
-			username: login,
-			password: password
-		};
-		const headers = {'Content-Type': 'application/x-www-form-urlencoded'};
+		if(!this.accessToken){
+			const data = {
+				grant_type: this.#grantType,
+				client_id: this.#clientId,
+				client_secret: this.#clientSecret,
+				username: login,
+				password: password
+			};
+			const headers = {'Content-Type': 'application/x-www-form-urlencoded'};
 
-		const response = await RequestInterface.sendRequest('POST', this.#oauthUrl + '/token', data, headers);
-		if (!response || !response.access_token) return false;
+			const response = await RequestInterface.sendRequest('POST', this.#oauthUrl + '/token', data, headers);
+			if (!response || !response.access_token) return false;
 
-		return response.access_token;
+			this.#uid = response.uid;
+			this.accessToken = response.access_token;
+
+		}else{
+			// const headers = {'OAuth': ''}
+			const response = await RequestInterface.sendRequest('POST', this.#baseUrl + '/users/' + this.#uid + '/playlists/list');
+			console.log(response)
+
+		}
+
+		return true;
+	}
+
+	// Get Yandex.Music favorites playlist
+	async getFavoritesPlaylist() {
+
 	}
 }

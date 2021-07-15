@@ -43,7 +43,6 @@ class YMusicAPI extends RequestInterface {
 			this.accessToken = response.access_token;
 
 		}else{
-			// const headers = {'OAuth': ''}
 			const response = await RequestInterface.sendRequest('POST', this.#baseUrl + '/users/' + this.#uid + '/playlists/list');
 			console.log(response)
 

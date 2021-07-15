@@ -11,9 +11,9 @@ class RequestInterface {
 		if (headers === undefined) headers = {};
 
 		// Generate request headers
+		console.log(headers)
 		headers = new Headers(headers);
 		if (!headers.get('Content-Type')) headers.append('Content-Type', 'application/json');
-		console.log(headers.get('Content-Type'));
 
 		// Generate request params
 		const options = {
@@ -34,8 +34,6 @@ class RequestInterface {
 			else
 				options.body = new URLSearchParams(data);
 		}
-
-		console.log(options);
 
 		// Execute request
 		const response = await fetch(url, options);

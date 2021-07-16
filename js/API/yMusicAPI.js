@@ -43,7 +43,12 @@ class YMusicAPI extends RequestInterface {
 			this.accessToken = response.access_token;
 
 		}else{
-			const response = await RequestInterface.sendRequest('POST', this.#baseUrl + '/users/' + this.#uid + '/playlists/list');
+			const headers = {
+				'Authorization': 'OAuth ' + this.accessToken,
+				'Origin': 'api.music.yandex.net',
+				'x-requested-with': 'XMLHttpRequest'
+			}
+			const response = await RequestInterface.sendRequest('GET', 'https://cors-anywhere.herokuapp.com/' + this.#baseUrl + '/users/' + this.#uid + '/playlists/list', {}, headers);
 			console.log(response)
 
 		}

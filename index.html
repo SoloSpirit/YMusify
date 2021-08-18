@@ -25,7 +25,7 @@
 
 		<main>
 			<!-- Start screen -->
-			<section class="hidden" data-screen="1">
+			<section class="" data-screen="1">
 				<div class="transfer_music">
 					<img class="logo spotify_logo" src="img/spotify.png" alt="spotify">
 					<img class="logo transfer_icon" src="img/transfer.svg" alt="transfer">
@@ -54,7 +54,7 @@
 			</section>
 
 			<!-- Yandex.Music access token -->
-			<section class="" data-screen="3">
+			<section class="hidden" data-screen="3">
 				<div class="transfer_music">
 					<img class="logo ymusic_logo" src="img/ymusic.png" alt="ymusic">
 				</div>
@@ -76,7 +76,7 @@
 
 				<div class="transfer_types">
 					<label class="radio">
-						<input type="radio" name="transfer_type" value="spotify_to_ym" checked>
+						<input type="radio" name="transfer_type" value="spot_to_ym" checked>
 						<span class="checkmark"></span>
 						<span class="radio_text">
 							From <img src="img/spotify.png" alt="spotify"> <span class="green">Spotify</span>
@@ -85,7 +85,7 @@
 					</label>
 
 					<label class="radio">
-						<input type="radio" name="transfer_type" value="ym_to_spotify">
+						<input type="radio" name="transfer_type" value="ym_to_spot">
 						<span class="checkmark"></span>
 						<span class="radio_text">
 							From <img src="img/ymusic.png" alt="ymusic"> <span class="yellow">Yandex.Music</span>
@@ -94,7 +94,7 @@
 					</label>
 				</div>
 
-				<div class="btn no_margin">Start transfer</div>
+				<div class="btn no_margin" data-action="start_music_transfer">Start transfer</div>
 			</section>
 		</main>
 

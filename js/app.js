@@ -57,20 +57,26 @@ document.addEventListener('DOMContentLoaded', () => {
 					yMusicPasswordInput.parentElement.classList.remove('error');
 				}
 
-				const response = await yMusify.yMusicGetAccessToken(yMusicLoginInput.value, yMusicPasswordInput.value);
-				if (!response) {
+				const yMusicAccessToken = await yMusify.yMusicGetAccessToken(yMusicLoginInput.value, yMusicPasswordInput.value);
+				if (!yMusicAccessToken) {
 					yMusicLoginInput.parentElement.classList.add('error');
 					yMusicPasswordInput.parentElement.classList.add('error');
 					return alert('Yandex login / password is invalid');
 				} else {
+					yMusify.yMusicSetAccessToken(yMusicAccessToken);
 					yMusicLoginInput.parentElement.classList.remove('error');
 					yMusicPasswordInput.parentElement.classList.remove('error');
 				}
 
 				break;
+			//	Start music transfer in chosen way
+			case 'start_music_transfer':
+				const transferType = document.querySelector('[name="transfer_type"]:checked').value;
+
+				await yMusify.startMusicTransfer(transferType);
 		}
 
-		// if(toScreen) goToScreen(toScreen);
+		if(toScreen) goToScreen(toScreen);
 	});
 });
 

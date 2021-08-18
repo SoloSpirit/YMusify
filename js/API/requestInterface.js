@@ -1,5 +1,6 @@
 class RequestInterface {
-	// Do request, available methods: GET, POST
+	// Send request, available methods: GET, POST
+	// Method returns response data
 	static async sendRequest(method, url, data, headers) {
 		// Handle main errors
 		if (!['GET', 'POST'].includes(method)) return console.error('Only GET and POST methods are available.');
@@ -11,26 +12,24 @@ class RequestInterface {
 		if (headers === undefined) headers = {};
 
 		// Generate request headers
-		console.log(headers)
 		headers = new Headers(headers);
 		if (!headers.get('Content-Type')) headers.append('Content-Type', 'application/json');
 
 		// Generate request params
 		const options = {
 			method: method,
-			cors: 'no-cors',
 			cache: 'no-cache',
 			headers: headers
-		}
+		};
 
-		// Add request params depending of request method
+		// Add request params depending on request method
 		if (method === 'GET') {
 			url = new URL(url);
 			url.search = new URLSearchParams(data).toString();
 			url = url.href;
 		} else {
 			if (headers.get('Content-Type') === 'application/json')
-				options.body =JSON.stringify(data);
+				options.body = JSON.stringify(data);
 			else
 				options.body = new URLSearchParams(data);
 		}
@@ -43,6 +42,7 @@ class RequestInterface {
 	}
 
 	// URL validation
+	// Method returns true in case of success
 	static validateUrl(url) {
 		try {
 			new URL(url);

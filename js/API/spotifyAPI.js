@@ -1,7 +1,7 @@
 // Spotify API class. Constructor's arguments are:
 // - clientId - the client ID provided to you by Spotify when you register your application
 // - redirectUri - the URI to redirect to after the user grants/denies permission
-class SpotifyAPI extends RequestInterface {
+class SpotifyAPI {
 	#baseUrl = 'https://api.spotify.com/v1';
 	#scope = 'user-read-private user-read-email';
 
@@ -10,8 +10,6 @@ class SpotifyAPI extends RequestInterface {
 	#_accessToken;
 
 	constructor(clientId, redirectUri) {
-		super();
-
 		this.#clientId = clientId;
 		this.#redirectUri = redirectUri;
 	}
@@ -33,12 +31,12 @@ class SpotifyAPI extends RequestInterface {
 		window.open(url.href, '_blank', 'location=yes,height=750,width=750,scrollbars=yes,status=yes');
 	}
 
-	// Get current Spotify access token
+	// Getter - get current Spotify access token
 	get accessToken() {
 		return this.#_accessToken;
 	}
 
-	// Set Spotify access token for further requests:
+	// Setter - set Spotify access token for further requests:
 	// - token - actual Spotify access token
 	set accessToken(token) {
 		this.#_accessToken = token;
@@ -46,8 +44,9 @@ class SpotifyAPI extends RequestInterface {
 
 	// Validate current Spotify access token:
 	// - token - the value that must be validated
+	// Method returns some data (not false) in case of success
 	async validateAccessToken(token) {
-		const headers = {'Authorization': 'Bearer ' + token}
-		return await RequestInterface.sendRequest('GET', this.#baseUrl + '/me', {}, headers);
+		const headers = {'Authorization': `Bearer ${token}`};
+		return await RequestInterface.sendRequest('GET', `${this.#baseUrl}/me`, {}, headers);
 	}
 }

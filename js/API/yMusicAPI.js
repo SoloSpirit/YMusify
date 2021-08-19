@@ -4,7 +4,7 @@ class YMusicAPI {
 	#clientSecret = '53bc75238f0c4d08a118e51fe9203300';
 	#baseUrl = 'https://api.music.yandex.net';
 	#oauthUrl = 'https://oauth.yandex.ru';
-	#proxyUrl = 'http://0.0.0.0:8080';
+	#proxyUrl = 'https://0.0.0.0:8080';
 	#grantType = 'password';
 
 	#uid;

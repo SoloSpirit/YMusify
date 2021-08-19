@@ -94,8 +94,8 @@ section .text + .radio{
 
 /* Preloader shown */
 section.preloader{
-	border: 8px solid var(--color-gray-l);
-	border-top-color: var(--color-green);
+	border: 8px solid var(--color-green);
+	border-bottom-color: var(--color-gray-l);
 	border-radius: 50%;
 	width: 110px;
 	height: 110px;
@@ -107,7 +107,6 @@ section.preloader{
 	transition: var(--transition-opacity);
 }
 .app.processing section{
-	opacity: 0;
 	pointer-events: none;
 }
 .app.processing section.preloader{
@@ -153,7 +152,13 @@ footer .back:hover{
 
 /* Spin keyframe */
 @keyframes spin{
+	50%{
+		border-color: var(--color-yellow);
+		border-bottom-color: var(--color-gray-l);
+	}
 	100%{
+		border-color: var(--color-green);
+		border-bottom-color: var(--color-gray-l);
 		transform: rotate(360deg);
 	}
 }

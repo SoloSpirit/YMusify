@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			//	Start music transfer in chosen way
 			case 'start_music_transfer':
 				app.classList.add('processing');
+				event.target.parentNode.style.opacity = '0';
 
 				const transferType = document.querySelector('[name="transfer_type"]:checked').value;
 				const result = await yMusify.startMusicTransfer(transferType);

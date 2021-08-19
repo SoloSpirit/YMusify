@@ -4,7 +4,7 @@ class YMusicAPI {
 	#clientSecret = '53bc75238f0c4d08a118e51fe9203300';
 	#baseUrl = 'https://api.music.yandex.net';
 	#oauthUrl = 'https://oauth.yandex.ru';
-	#proxyUrl = 'https://cors-anywhere.herokuapp.com';
+	#proxyUrl = 'http://0.0.0.0:8080';
 	#grantType = 'password';
 
 	#uid;
@@ -39,7 +39,7 @@ class YMusicAPI {
 		const response = await RequestInterface.sendRequest('POST', this.#oauthUrl + '/token', data, headers);
 		if (!response || !response.access_token) return false;
 
-		if(response.uid) this.#uid = response.uid;
+		if (response.uid) this.#uid = response.uid;
 		return response.access_token;
 	};
 
@@ -48,19 +48,55 @@ class YMusicAPI {
 	// - visibility - visibility of the playlist
 	// Method returns created playlist id (kind) in case of success
 	async createPlaylist(title, visibility) {
-		if(!visibility) visibility = 'public';
+		if (!visibility) visibility = 'public';
 
 		const headers = this.#genHeaders(['Content-Type', 'Authorization']);
 		const data = {
 			title: title,
 			visibility: visibility
-		}
+		};
 
 		const response = await RequestInterface.sendRequest('POST', `${this.#proxyUrl}/${this.#baseUrl}/users/${this.#uid}/playlists/create`, data, headers);
-		if(!response || !response.result.kind) return false;
+		if (!response || !response.result.kind) return false;
 
 		console.log(response.result.kind);
 		return response.result.kind;
+	};
+
+	// Get track list by search
+	// - tracks - track list in unified style (see Tracks class)
+	// Method returns track list in unified style (see Tracks class) in case of success
+	async getTracksBySearch(tracks) {
+		const headers = this.#genHeaders(['Content-Type', 'Authorization']);
+		const data = {
+			nocorrect: true,
+			type: 'track',
+			page: 0,
+		};
+		const tracksBySearch = new Tracks();
+
+		await Promise.all(tracks.map(async track => {
+			data.text = `${track.artist} - ${track.name}`;
+
+			const response = await RequestInterface.sendRequest('GET', `${this.#proxyUrl}/${this.#baseUrl}/search`, data, headers);
+			if(!response || !response.result || !response.result.tracks) return false;
+
+			const trackBySearch = response.result.tracks.results[0];
+			tracksBySearch.add(trackBySearch.id, trackBySearch.title, trackBySearch.artists[0].name, trackBySearch.albums[0].title, trackBySearch.albums[0].id);
+		}));
+
+		return tracksBySearch.list;
+	};
+
+	// Add tracks to favorites by track ids
+	// - ids - track ids
+	// Method returns true in case of success
+	async addTracksToFavorites(ids) {
+		const headers = this.#genHeaders(['Content-Type', 'Authorization']);
+		const data = {'track-ids': ids};
+
+		const response = await RequestInterface.sendRequest('POST', `${this.#proxyUrl}/${this.#baseUrl}/users/${this.#uid}/likes/tracks/add-multiple`, data, headers);
+		return !!response;
 	};
 
 	// Generate headers by names:
@@ -69,8 +105,8 @@ class YMusicAPI {
 	#genHeaders(headerNames) {
 		const headers = {};
 
-		if(headerNames.includes('Content-Type')) headers['Content-Type'] = 'application/x-www-form-urlencoded';
-		if(headerNames.includes('Authorization')) headers['Authorization'] = `OAuth ${this.accessToken}`;
+		if (headerNames.includes('Content-Type')) headers['Content-Type'] = 'application/x-www-form-urlencoded';
+		if (headerNames.includes('Authorization')) headers['Authorization'] = `OAuth ${this.accessToken}`;
 
 		return headers;
 	};

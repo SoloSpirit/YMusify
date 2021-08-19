@@ -71,9 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
 				break;
 			//	Start music transfer in chosen way
 			case 'start_music_transfer':
-				const transferType = document.querySelector('[name="transfer_type"]:checked').value;
+				app.classList.add('processing');
 
-				await yMusify.startMusicTransfer(transferType);
+				const transferType = document.querySelector('[name="transfer_type"]:checked').value;
+				const result = await yMusify.startMusicTransfer(transferType);
+
+				app.classList.remove('processing');
+				if(!result) return alert('Something went wrong. Please, try again later');
 		}
 
 		if(toScreen) goToScreen(toScreen);
@@ -91,7 +95,7 @@ function goToScreen(appScreenNumber) {
 	// Screen animation
 	const animationDuration = 300;
 	const appScreens = document.querySelectorAll('[data-screen]');
-	const appScreenActive = document.querySelector(`[data-screen="${appScreenNumber}"]`)
+	const appScreenActive = document.querySelector(`[data-screen="${appScreenNumber}"]`);
 
 	appScreens.forEach(screen => screen.style.opacity = '0');
 	setTimeout(() => {

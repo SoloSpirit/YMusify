@@ -1,3 +1,4 @@
+// Request interface. Allows to send GET and POST requests
 class RequestInterface {
 	// Send request, available methods: GET, POST
 	// Method returns response data
@@ -39,7 +40,7 @@ class RequestInterface {
 		if (!response.ok) return false;
 
 		return await response.json();
-	}
+	};
 
 	// URL validation
 	// Method returns true in case of success
@@ -51,5 +52,5 @@ class RequestInterface {
 		}
 
 		return true;
-	}
+	};
 }

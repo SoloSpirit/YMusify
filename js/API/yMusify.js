@@ -4,6 +4,8 @@
 class YMusify {
 	#spotifyAPI;
 	#yMusicAPI;
+	#sourceTracks = [];
+	#receiverTracks = [];
 
 	constructor(spotifyClientId, redirectUrl) {
 		this.#spotifyAPI = new SpotifyAPI(spotifyClientId, redirectUrl);
@@ -32,7 +34,7 @@ class YMusify {
 	// Method returns token in case of success
 	async yMusicGetAccessToken(yMusicLogin, yMusicPassword) {
 		const token = await this.#yMusicAPI.genTokenFromCredentials(yMusicLogin, yMusicPassword);
-		if(!token) return false;
+		if (!token) return false;
 
 		return token;
 	};
@@ -47,17 +49,21 @@ class YMusify {
 
 	// Start music transfer:
 	// - transferType - direction of music transfer: either form Spotify to Yandex.Music (spot_to_ym) or from Yandex.Music to Spotify (ym_to_spot)
+	// Method returns true in case of success
 	async startMusicTransfer(transferType) {
 		switch (transferType) {
 			case 'spot_to_ym':
-				const playlistTitle = 'YMusify';
+				this.#sourceTracks = await this.#spotifyAPI.getSavedTracks();
+				this.#receiverTracks = await this.#yMusicAPI.getTracksBySearch(this.#sourceTracks);
 
-				const playlistId = await this.#yMusicAPI.createPlaylist(playlistTitle);
-				if(!playlistId) return console.error('Playlist creation error');
+				const receiverTrackIds = [];
+				this.#receiverTracks.map(receiverTrack => receiverTrackIds.push(receiverTrack.id));
 
-				break;
+				return await this.#yMusicAPI.addTracksToFavorites(receiverTrackIds);
 			case 'ym_to_spot':
 				return console.error('Method is currently unavailable');
+			default:
+				return console.error('Incorrect transfer type');
 		}
 	};
 }

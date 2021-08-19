@@ -18,7 +18,7 @@ class Tracks {
 		});
 	};
 
-	// Get track list
+	// Getter - get track list
 	get list() {
 		return this.#_list;
 	}

@@ -55,6 +55,7 @@ class YMusify {
 			case 'spot_to_ym':
 				this.#sourceTracks = await this.#spotifyAPI.getSavedTracks();
 				this.#receiverTracks = await this.#yMusicAPI.getTracksBySearch(this.#sourceTracks);
+				return true;
 
 				const receiverTrackIds = [];
 				this.#receiverTracks.map(receiverTrack => receiverTrackIds.push(receiverTrack.id));
